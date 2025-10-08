@@ -1,0 +1,127 @@
+{
+  "Bratislava":{
+    "Zlaté Piesky Tesco":{
+      "tags": ["ZP"]
+    },
+    "OC VIVO!":{
+      "tags": ["VIVO"]
+    },
+    "Petržalka Tesco":{
+      "tags": ["PT"]
+    },
+    "Lamač Tesco":{
+      "tags": ["LM"]
+    },
+    "Devínska nová Ves OC Glavica":{
+      "tags": ["DV", "DNG", "GL"]
+    },
+    "Malacky Tesco":{
+      "tags": ["MA", "ML"]
+    },
+    "Skalica Tesco":{
+      "tags": ["SK"]
+    }
+  },
+  
+  "Sever": {
+    "Hlohovec Tesco":{
+      "tags": ["HC"]
+    },
+    "Pieštany Tesco":{
+      "tags": ["PN"]
+    },
+    "Nové Mesto nad Váhom Tesco":{
+      "tags": ["NM"]
+    },
+    "Nové Mesto nad Váhom Kaufland":{
+      "tags": ["NM", "NMK", "Kaufland"]
+    },
+    "Trenčín OC Južanka":{
+      "tags": ["TN", "TNJ"]
+    },
+    "Trenčín Tesco":{
+      "tags": ["TN", "TNT"]
+    },
+    "Dubnica nad Váhom Tesco":{
+      "tags": ["IL"]
+    },
+    "Púchov Tesco":{
+      "tags": ["PU"]
+    },
+    "Považská Bystrica Tesco":{
+      "tags": ["PB"]
+    },
+    "Žilina Tesco":{
+      "tags": ["ZA"]
+    }
+  },
+
+  "Stred": {
+    "Trnava Arkadia": {
+      "tags": ["TT", "TTA"]
+    },
+    "Trnava Tesco 1": {
+      "tags": ["TT", "TTT"]
+    },
+    "Trnava Tesco 2": {
+      "tags": ["TT", "TTT2"]
+    },
+    "Nitra Tesco": {
+      "tags": ["NR", "NRT"]
+    },
+    "Nitra OC Mlyny": {
+      "tags": ["NR", "NRM"]
+    },
+    "Levice Tesco 1": {
+      "tags": ["LV"]
+    },
+    "Levice Tesco 2": {
+      "tags": ["LV", "LV2"]
+    },
+    "Žiar nad Hronom Tesco 1": {
+      "tags": ["ZH"]
+    },
+    "Žiar nad Hronom Tesco 2": {
+      "tags": ["ZH", "ZH2"]
+    },
+    "Zvolen Tesco": {
+      "tags": ["ZV"]
+    }
+  },
+
+  "Juh": {
+    "Šaľa Tesco": {
+      "tags": ["SA"]
+    },
+    "Galanta Kaufland": {
+      "tags": ["GA", "GAK", "Kaufland"]
+    },
+    "Galanta Tesco": {
+      "tags": ["GA", "GAT"]
+    },
+    "Šurany Jednota": {
+      "tags": ["SU"]
+    },
+    "Nové Zámky Tesco": {
+      "tags": ["NZ", "NZT"]
+    },
+    "Nové Zámky Aquario": {
+      "tags": ["NZ", "NZA"]
+    },
+    "Nové Zámky Jednota": {
+      "tags": ["NZ", "NZJ"]
+    },
+    "Komárno Tesco": {
+      "tags": ["KN"]
+    },
+    "Veľký Meder Kaufland": {
+      "tags": ["VM", "VMK", "Kaufland"]
+    },
+    "Dunajská Streda OC MAX": {
+      "tags": ["DS", "MAX"]
+    },
+    "Dunajská Streda Tesco": {
+      "tags": ["DS", "DST"]
+    }
+  }
+}
