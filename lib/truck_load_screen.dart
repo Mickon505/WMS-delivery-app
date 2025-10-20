@@ -70,6 +70,13 @@ class _TruckLoadScreen extends State<TruckLoadScreen> {
   }
 
   @override
+  void dispose() {
+    _productNameController.dispose();
+    _quantityController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double horizontalPadding = screenWidth * 0.01;

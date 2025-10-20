@@ -34,6 +34,16 @@ class _VendingMachineStatesScreen extends State<VendingMachineStatesScreen> {
     _loadRouteData();
   }
 
+  @override
+  void dispose() {
+    _productNameController.dispose();
+    _quantityController.dispose();
+    _kioskController.dispose();
+    _kioskAutocompleteController?.dispose();
+    _productAutocompleteController?.dispose();
+    super.dispose();
+  }
+
   Future<void> _loadRouteData() async {
     try {
       // Načítanie obsahu JSON súboru

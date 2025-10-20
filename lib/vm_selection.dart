@@ -44,6 +44,12 @@ class _VMSelectionScreenState extends State<VMSelectionScreen> {
     _loadData();
   }
 
+  @override
+  void dispose() {
+    _minterController.dispose();
+    super.dispose();
+  }
+
   Future<void> _loadData() async {
     final jsonData = await rootBundle.loadString('assets/VMRoutes.json');
     final Map<String, dynamic> routes = json.decode(jsonData);
@@ -88,6 +94,32 @@ class _VMSelectionScreenState extends State<VMSelectionScreen> {
 
     final filteredProducts = _products.where((p) => p['name'] != '' && p['quantity'] > 0).toList();
     final parsedMinter = double.tryParse(_minterController.text) ?? 0.00;
+
+    if (parsedMinter <= 0 || _minterController.text.isEmpty || _minterController.text == "0") {
+      showDialog(context: context, 
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Hodnota mincovníka je 0€. Potvrď hodnotu mincovníka."),
+          content: TextField(
+            controller: _minterController,
+            keyboardType: TextInputType.number,
+            inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))],
+            decoration: InputDecoration(
+              hintText: "Mincovník",
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("POTVRDIŤ"),
+            ),
+          ],
+        );
+      });
+      return;
+    }
 
     final dataToSave = {
       "restocked_items": filteredProducts,

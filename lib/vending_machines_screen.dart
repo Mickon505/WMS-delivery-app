@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:romivending/global_variables.dart';
+import 'package:romivending/show_todays_unloads.dart';
 
 import 'supabase_service.dart';
 
@@ -100,6 +101,17 @@ class _VendingMachinesScreen extends State<VendingMachinesScreen> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Chyba pri načítaní trás: $e')));
     }
+  }
+
+  @override
+  void dispose() {
+    _productNameController.dispose();
+    _quantityController.dispose();
+    _kioskController.dispose();
+    _minterController.dispose();
+    _kioskAutocompleteController?.dispose();
+    _productAutocompleteController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -402,25 +414,48 @@ class _VendingMachinesScreen extends State<VendingMachinesScreen> {
             ),
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  padding: EdgeInsets.symmetric(vertical: 16.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                onPressed: _loadTruck,
-                child: Text('DOKONČIŤ VYKLÁDKU', style: TextStyle(color: Colors.black)),
-              ),
+              child: (unloadedProductsText.isEmpty) ? buildShowUnloadsButton() : buildFinishUnloadButton(),
             ),
-            SizedBox(height: 50,)
+            SizedBox(height: 50,),
           ],
         ),
       ),
     );
   }
   
+  ElevatedButton buildFinishUnloadButton(){
+    return ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              padding: EdgeInsets.symmetric(vertical: 16.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+            onPressed: _loadTruck,
+            child: Text('DOKONČIŤ VYKLÁDKU', style: TextStyle(color: Colors.black)),
+          );
+  }
+
+  ElevatedButton buildShowUnloadsButton(){
+    return ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              padding: EdgeInsets.symmetric(vertical: 16.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ShowTodaysUnloads()),
+              );
+            },
+            child: Text('ZOBRAZIŤ VYKLÁDKY', style: TextStyle(color: Colors.black)),
+          );
+  }
+
   void _loadTruck() async {
     if (_selectedKiosk == null) {
       ScaffoldMessenger.of(context).showSnackBar(
