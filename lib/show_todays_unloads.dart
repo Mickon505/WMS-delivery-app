@@ -39,12 +39,19 @@ class _ShowTodaysUnloadsState extends State<ShowTodaysUnloads> {
           .toList();
         final String place = unload['restocked_at_place'];
 
-        todaysUnloads[place] = {
-          'machineName': place,
-          'products': products,
-        };
+        if(!todaysUnloads.containsKey(place)) {
+          items.add(DropdownMenuItem(value: place, child: Text(place)));
+        
+          todaysUnloads[place] = {
+            'machineName': place,
+            'products': products,
+          };
+        }
+        else {
+          todaysUnloads[place]['products'].addAll(products);
+        }
 
-        items.add(DropdownMenuItem(value: place, child: Text(place)));
+
         index++;
       }
       
@@ -62,6 +69,8 @@ class _ShowTodaysUnloadsState extends State<ShowTodaysUnloads> {
 
   @override
   void dispose() {
+    todaysUnloads.clear();
+    items.clear();
     super.dispose();
   }
 
@@ -109,6 +118,9 @@ class _ShowTodaysUnloadsState extends State<ShowTodaysUnloads> {
             ),
             hint: Text("Vyber automat", style: TextStyle(color: Colors.white70)),
             style: TextStyle(color: Colors.white),),
+            
+            SizedBox(height: 16.0),
+            
             (selectedMachine != "*") ?
               Expanded(
                 child: ListView.builder(

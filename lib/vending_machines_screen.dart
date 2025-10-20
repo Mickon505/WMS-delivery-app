@@ -41,7 +41,7 @@ class _VendingMachinesScreen extends State<VendingMachinesScreen> {
   List<String> unloadedProductsText = [];
   List<Map<String, dynamic>> unloadedProducts = [];
   bool isRouteSelected = false;
-  
+
   void _addItem() {
     String productName = _productNameController.text;
     String quantity = _quantityController.text;
@@ -227,7 +227,7 @@ class _VendingMachinesScreen extends State<VendingMachinesScreen> {
                   width: screenWidth * 0.23,
                   child: TextField(
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d{0,2}'))
+                      FilteringTextInputFormatter.allow(RegExp(r'^\d*\,?\d{0,2}'))
                     ],
                     controller: _minterController,
                     keyboardType: TextInputType.numberWithOptions(decimal: true),
@@ -477,10 +477,35 @@ class _VendingMachinesScreen extends State<VendingMachinesScreen> {
     }
 
     try {
+      bool confirmed = await showDialog<bool>(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Potvrdenie vykládky'),
+            content: Text('Potvrď, že chceš vyložiť tieto produkty:\n\n - ${unloadedProductsText.join('\n - ')}'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('Zrušiť'),
+                onPressed: () {
+                  Navigator.of(context).pop(false); // User cancelled
+                },
+              ),
+              TextButton(
+                child: Text('Potvrdiť'),
+                onPressed: () {
+                  Navigator.of(context).pop(true); // User confirmed
+                },
+              ),
+            ],
+          );
+        },
+      ) ?? false;
+      if(!confirmed) return;
+
       await SupabaseService.supabase.from("VendingRestock").insert({
         "restocked_items": unloadedProducts,
         "restocked_at_place": _selectedKiosk,
-        "minter_val": double.tryParse(_minterController.text) ?? 0.0,
+        "minter_val": double.tryParse(_minterController.text.replaceAll(",", ".")) ?? 0.0,
         "minter_val_text": _minterController.text
       });
 

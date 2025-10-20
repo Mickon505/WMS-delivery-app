@@ -151,7 +151,7 @@ class _VendingMachineStatesScreen extends State<VendingMachineStatesScreen> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
             Row(
@@ -328,7 +328,7 @@ class _VendingMachineStatesScreen extends State<VendingMachineStatesScreen> {
                 ),
                 SizedBox(width: screenWidth * 0.03),
                 SizedBox(
-                  width: screenWidth * 0.30,
+                  width: screenWidth * 0.25,
                   child: TextField(
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
